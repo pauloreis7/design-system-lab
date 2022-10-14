@@ -1,3 +1,5 @@
+import { FormEvent, useState } from 'react'
+import axios from 'axios'
 import { Envelope, Lock } from 'phosphor-react'
 
 import { Button } from '../components/Button'
@@ -6,13 +8,17 @@ import { Logo } from '../components/Logo'
 import { Text } from '../components/Text'
 import { Checkbox } from '../components/Checkbox'
 import { TextInput } from '../components/TextInput'
-import { FormEvent, useState } from 'react'
 
 export function SignIn() {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false)
 
   async function handleSignIn(event: FormEvent) {
     event.preventDefault()
+
+    await axios.post('/sessions', {
+      email: 'pauloreis@example.com',
+      password: '12345678'
+    })
 
     setIsUserSignedIn(true)
   }
